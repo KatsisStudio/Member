@@ -8,8 +8,8 @@ use Twig\Environment;
 $loader = new FilesystemLoader(["templates"]);
 $twig = new Environment($loader);
 
-function toLower($name) {
-    return strtolower($name);
+function clean($name) {
+    return strtolower(str_replace(' ', '', $name));
 }
 
 if (str_starts_with($_SERVER['HTTP_HOST'], "localhost"))
@@ -18,7 +18,7 @@ if (str_starts_with($_SERVER['HTTP_HOST'], "localhost"))
 }
 else
 {
-    $name = strtolower(str_replace(' ', '', explode('.', $_SERVER['HTTP_HOST'])[0]));
+    $name = explode('.', clean($_SERVER['HTTP_HOST']))[0];
 }
 
 $json = isset($_GET["json"]) && $_GET["json"] === "1";
@@ -36,7 +36,7 @@ if ($json) {
     $endProjects = [];
 
     foreach (array_reverse($images) as $img) {
-        if ($img["author"] === $name) {
+        if (clean($img["author"]) === $name) {
             array_push($endImages, [
                 "id" => $img["id"],
                 "format" => $img["format"]
@@ -52,7 +52,7 @@ if ($json) {
     $comics = glob($data["comic"] . "*", GLOB_ONLYDIR);
     foreach ($comics as $path) {
         $metadata = json_decode(file_get_contents("$path/info.json"), true);
-        if (in_array($name, array_map("toLower", $metadata["members"])))
+        if (in_array($name, array_map("clean", $metadata["members"])))
         {
             array_push($endComics, [
                 "id" => basename($path)
@@ -66,7 +66,7 @@ if ($json) {
     }
 
     foreach (array_reverse($projects) as $p) {
-        if (($p["type"] === "game" || $p["type"] === "gamejam") && in_array($name, array_map("toLower", $p["members"]))) {
+        if (($p["type"] === "game" || $p["type"] === "gamejam") && in_array($name, array_map("clean", $p["members"]))) {
             array_push($endProjects, [
                 "baseFolder" => $p["baseFolder"],
                 "preview" => $p["preview"],
@@ -81,7 +81,7 @@ if ($json) {
     }
 
     foreach ($members as $m) {
-        if (strtolower($m["name"]) == $name)
+        if (clean($m["name"]) == $name)
         {
             echo $twig->render("index.html.twig", [
                 "member" => $m,
