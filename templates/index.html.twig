@@ -28,7 +28,7 @@
                                 <tr>
                                     <td>{{ cddata.range }}</td>
                                     <td>{{ cddata.details }}</td>
-                                    <td class="devise">{{ cddata.price }} {{ member.commissions.devise }}</td>
+                                    <td>{% if cddata.price == -1 %}TBA{% else %}{{ cddata.price }}{{ member.commissions.devise }}{% endif %}</td>
                                 </tr>
                         {% endfor %}
                             </tbody>

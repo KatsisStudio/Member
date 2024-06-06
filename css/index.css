@@ -3,6 +3,7 @@ html {
     background-color: #1e1e1e;
     color: #ccc;
     line-height: 1.5em;
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(92,0,58,1) 50%, rgba(27,0,82,1) 100%);
 }
 
 body {
@@ -37,7 +38,8 @@ h1 {
 #commissions .container {
     width: 1000px;
     background-size: cover;
-    background-position: center;
+    background-position: 50% 20%;
+    border-radius: 10px;
 }
 
 #commissions .content {
@@ -46,19 +48,33 @@ h1 {
     z-index: 1;
 }
 
+#commissions thead {
+    font-size: 1.2em;
+}
+
+#commissions tbody {
+    font-size: 1.1em;
+}
+
 #commissions table {
     height: 100%;
     width: 100%;
     padding: 10px;
+    border-collapse: collapse;
 }
 
-#commissions .devise {
-    text-align: right;
+#commissions td {
+    padding: 0 20px;
 }
 
 #commissions .filter {
     position: absolute;
     width: 1000px;
     height: 300px;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+}
+
+#commissions thead {
+    border-bottom: 1px white solid;
 }
