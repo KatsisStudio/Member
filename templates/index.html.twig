@@ -2,12 +2,18 @@
 
 {% block content %}
     <h1>{{ name }}</h1>
-    {% if comics is empty and images is empty %}
+    {% if projects is empty and comics is empty and images is empty %}
         <div id="katsises">
             <img src="img/logo.svg"/> <img src="img/logo.svg"/> <img src="img/logo.svg"/><br>
             <h2>There is nothing except us, katsises</h2>
         </div>
     {% else %}
+        {% if projects is not empty %}
+            <h2>Projects</h2>
+            {% for p in projects %}
+                <a href="https://katsis.net/"><img src="https://katsis.net/data/projects/{{ p.baseFolder }}/{{ p.preview }}"/></a>
+            {% endfor %}
+        {% endif %}
         {% if comics is not empty %}
             <h2>Comics</h2>
             {% for c in comics %}

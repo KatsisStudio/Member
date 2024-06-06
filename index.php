@@ -29,9 +29,11 @@ if ($json) {
     $data = json_decode(file_get_contents("data/config.json"), true);
     $members = json_decode(file_get_contents($data["members"]), true);
     $images = json_decode(file_get_contents($data["gallery"]), true);
+    $projects = json_decode(file_get_contents($data["project"]), true);
 
     $endImages = [];
     $endComics = [];
+    $endProjects = [];
 
     foreach (array_reverse($images) as $img) {
         if ($img["author"] === $name) {
@@ -63,13 +65,28 @@ if ($json) {
         }
     }
 
+    foreach (array_reverse($projects) as $p) {
+        if (($p["type"] === "game" || $p["type"] === "gamejam") && in_array($name, array_map("toLower", $p["members"]))) {
+            array_push($endProjects, [
+                "baseFolder" => $p["baseFolder"],
+                "preview" => $p["preview"]
+            ]);
+
+            if (count($endProjects) === 5)
+            {
+                break;
+            }
+        }
+    }
+
     foreach ($members as $m) {
         if (strtolower($m["name"]) == $name)
         {
             echo $twig->render("index.html.twig", [
                 "name" => $m["name"],
                 "images" => $endImages,
-                "comics" => $endComics
+                "comics" => $endComics,
+                "projects" => $endProjects
             ]);
             return;
         }
