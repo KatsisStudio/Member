@@ -11,7 +11,7 @@
         {% if projects is not empty %}
             <h2>Projects</h2>
             {% for p in projects %}
-                <a href="https://katsis.net/"><img src="https://katsis.net/data/projects/{{ p.baseFolder }}/{{ p.preview }}"/></a>
+                <a href="{{ p.link }}"><img src="https://katsis.net/data/projects/{{ p.baseFolder }}/{{ p.preview }}"/></a>
             {% endfor %}
         {% endif %}
         {% if comics is not empty %}

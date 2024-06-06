@@ -69,7 +69,8 @@ if ($json) {
         if (($p["type"] === "game" || $p["type"] === "gamejam") && in_array($name, array_map("toLower", $p["members"]))) {
             array_push($endProjects, [
                 "baseFolder" => $p["baseFolder"],
-                "preview" => $p["preview"]
+                "preview" => $p["preview"],
+                "link" => $p["links"][0]["content"]
             ]);
 
             if (count($endProjects) === 5)
