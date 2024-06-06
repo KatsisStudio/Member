@@ -7,8 +7,22 @@ html {
 
 body {
     margin: 0;
+    padding: 20px;
 }
 
 img {
     max-height: 300px;
+}
+
+h1 {
+    text-align: center;
+}
+
+#katsises img {
+    width: 200px;
+}
+
+#katsises {
+    margin-top: 100px;
+    text-align: center;
 }

@@ -2,16 +2,23 @@
 
 {% block content %}
     <h1>{{ name }}</h1>
-    {% if comics is not empty %}
-        <h2>Comics</h2>
-        {% for c in comics %}
-            <a href="https://comic.katsis.net/{{ c.id }}"><img src="https://comic.katsis.net/comics/{{ c.id }}/previews/thumbnail.png"/></a>
-        {% endfor %}
-    {% endif %}
-    {% if images is not empty %}
-        <h2>Gallery</h2>
-        {% for img in images %}
-            <a href="https://gallery.katsis.net/i/{{ img.id }}"><img src="https://gallery.katsis.net/data/thumbnails/{{ img.id }}.{{ img.format }}"/></a>
-        {% endfor %}
+    {% if comics is empty and images is empty %}
+        <div id="katsises">
+            <img src="img/logo.svg"/> <img src="img/logo.svg"/> <img src="img/logo.svg"/><br>
+            <h2>There is nothing except us, katsises</h2>
+        </div>
+    {% else %}
+        {% if comics is not empty %}
+            <h2>Comics</h2>
+            {% for c in comics %}
+                <a href="https://comic.katsis.net/{{ c.id }}"><img src="https://comic.katsis.net/comics/{{ c.id }}/previews/thumbnail.png"/></a>
+            {% endfor %}
+        {% endif %}
+        {% if images is not empty %}
+            <h2>Gallery</h2>
+            {% for img in images %}
+                <a href="https://gallery.katsis.net/i/{{ img.id }}"><img src="https://gallery.katsis.net/data/thumbnails/{{ img.id }}.{{ img.format }}"/></a>
+            {% endfor %}
+        {% endif %}
     {% endif %}
 {% endblock %}
