@@ -1,13 +1,43 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    <h1>{{ name }}</h1>
-    {% if projects is empty and comics is empty and images is empty %}
+    <h1>{{ member.name }}</h1>
+    {% if projects is empty and comics is empty and images is empty and commissions is null %}
         <div id="katsises">
             <img src="img/logo.svg"/> <img src="img/logo.svg"/> <img src="img/logo.svg"/><br>
             <h2>There is nothing except us, katsises</h2>
         </div>
     {% else %}
+        {% if member.commissions is not null %}
+        <div id="commissions">
+            {% for cdata in member.commissions.data %}
+                <h3>{{ cdata.name }}</h3>
+                <div class="container" style="background-image: url('https://gallery.katsis.net/data/images/{{ cdata.background }}.png');">
+                    <div class="filter"></div>
+                    <div class="content">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Art Range</th>
+                                    <th>Detail</th>
+                                    <th>Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                        {% for cddata in cdata.details %}
+                                <tr>
+                                    <td>{{ cddata.range }}</td>
+                                    <td>{{ cddata.details }}</td>
+                                    <td class="devise">{{ cddata.price }} {{ member.commissions.devise }}</td>
+                                </tr>
+                        {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        {% endif %}
         {% if projects is not empty %}
             <h2>Projects</h2>
             {% for p in projects %}

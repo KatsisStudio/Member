@@ -84,7 +84,7 @@ if ($json) {
         if (strtolower($m["name"]) == $name)
         {
             echo $twig->render("index.html.twig", [
-                "name" => $m["name"],
+                "member" => $m,
                 "images" => $endImages,
                 "comics" => $endComics,
                 "projects" => $endProjects
