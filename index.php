@@ -22,12 +22,32 @@ if ($json) {
     header('Content-Type: application/json; charset=utf-8');
     echo "TODO";
 } else {
-    $members = json_decode(file_get_contents("data/members.json"), true);
+    $data = json_decode(file_get_contents("data/config.json"), true);
+    $members = json_decode(file_get_contents($data["members"]), true);
+    $images = json_decode(file_get_contents($data["gallery"]), true);
+
+    $endImages = [];
+
+    foreach (array_reverse($images) as $img) {
+        if ($img["author"] === $name) {
+            array_push($endImages, [
+                "id" => $img["id"],
+                "format" => $img["format"]
+            ]);
+
+            if (count($endImages) === 5)
+            {
+                break;
+            }
+        }
+    }
+
     foreach ($members as $m) {
         if (strtolower($m["name"]) == $name)
         {
             echo $twig->render("index.html.twig", [
-                "name" => $m["name"]
+                "name" => $m["name"],
+                "images" => $endImages
             ]);
             return;
         }
