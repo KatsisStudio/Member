@@ -21,58 +21,66 @@
             <h2>There is nothing except us, katsises</h2>
         </div>
     {% else %}
-        {% if member.commissions is not null %}
-        <h2>Commissions</h2>
-        <hr>
-        <div id="commissions" class="flex">
-            {% for cdata in member.commissions.data %}
-                <h3>{{ cdata.name }}</h3>
-                <div class="container" style="background-image: url('https://gallery.katsis.net/data/images/{{ cdata.background }}.png');">
-                    <div class="filter"></div>
-                    <div class="content">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Art Range</th>
-                                    <th>Detail</th>
-                                    <th>Price</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                        {% for cddata in cdata.details %}
-                                <tr>
-                                    <td>{{ cddata.range }}</td>
-                                    <td>{{ cddata.details }}</td>
-                                    <td>{% if cddata.price == -1 %}TBA{% else %}{{ cddata.price }}{{ member.commissions.devise }}{% endif %}</td>
-                                </tr>
-                        {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
+        <div id="main">
+            {% if projects is not empty %}
+                <h2>Projects</h2>
+                <hr>
+                <div class="flex">
+                {% for p in projects %}
+                    <a href="{{ p.link }}"><img src="https://katsis.net/data/projects/{{ p.baseFolder }}/{{ p.preview }}"/></a>
+                {% endfor %}
                 </div>
-            {% endfor %}
+            {% endif %}
+            {% if member.commissions is not null %}
+            <h2>Commissions</h2>
+            <hr>
+            <div id="commissions" class="flex">
+                {% for cdata in member.commissions.data %}
+                    <h3>{{ cdata.name }}</h3>
+                    <div class="container" style="background-image: url('https://gallery.katsis.net/data/images/{{ cdata.background }}.png');">
+                        <div class="filter"></div>
+                        <div class="content">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Art Range</th>
+                                        <th>Detail</th>
+                                        <th>Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                            {% for cddata in cdata.details %}
+                                    <tr>
+                                        <td>{{ cddata.range }}</td>
+                                        <td>{{ cddata.details }}</td>
+                                        <td>{% if cddata.price == -1 %}TBA{% else %}{{ cddata.price }}{{ member.commissions.devise }}{% endif %}</td>
+                                    </tr>
+                            {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            {% if comics is not empty %}
+                <h2>Comics</h2>
+                <hr>
+                <div class="flex">
+                {% for c in comics %}
+                    <a href="https://comic.katsis.net/{{ c.id }}"><img src="https://comic.katsis.net/comics/{{ c.id }}/previews/thumbnail.png"/></a>
+                {% endfor %}
+                </div>
+            {% endif %}
+            {% if images is not empty %}
+                <h2>Gallery</h2>
+                <hr>
+                <div class="flex">
+                {% for img in images %}
+                    <a href="https://gallery.katsis.net/i/{{ img.id }}"><img src="https://gallery.katsis.net/data/thumbnails/{{ img.id }}.{{ img.format }}"/></a>
+                {% endfor %}
+                </div>
+            {% endif %}
         </div>
-        {% endif %}
-        {% if projects is not empty %}
-            <h2>Projects</h2>
-            <hr>
-            {% for p in projects %}
-                <a href="{{ p.link }}"><img src="https://katsis.net/data/projects/{{ p.baseFolder }}/{{ p.preview }}"/></a>
-            {% endfor %}
-        {% endif %}
-        {% if comics is not empty %}
-            <h2>Comics</h2>
-            <hr>
-            {% for c in comics %}
-                <a href="https://comic.katsis.net/{{ c.id }}"><img src="https://comic.katsis.net/comics/{{ c.id }}/previews/thumbnail.png"/></a>
-            {% endfor %}
-        {% endif %}
-        {% if images is not empty %}
-            <h2>Gallery</h2>
-            <hr>
-            {% for img in images %}
-                <a href="https://gallery.katsis.net/i/{{ img.id }}"><img src="https://gallery.katsis.net/data/thumbnails/{{ img.id }}.{{ img.format }}"/></a>
-            {% endfor %}
-        {% endif %}
     {% endif %}
 {% endblock %}

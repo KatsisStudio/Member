@@ -23,6 +23,10 @@ h2 {
     margin-top: 3em;
 }
 
+hr {
+    margin-bottom: 25px;
+}
+
 #katsises img {
     width: 200px;
 }
@@ -46,6 +50,13 @@ h2 {
 
 #intro-title {
     column-gap: 30px;
+    justify-content: start;
+}
+
+#intro-title p {
+    align-self: flex-end;
+    color: gray;
+    font-size: 15px;
 }
 
 .flex {
@@ -104,4 +115,12 @@ h2 {
 
 #pfp {
     width: 100px;
+}
+
+#main img {
+    border-radius: 20px;
+}
+
+#main .flex {
+    column-gap: 20px;
 }
