@@ -15,8 +15,12 @@ img {
     max-height: 300px;
 }
 
-h1 {
+h1, h2 {
     text-align: center;
+}
+
+h2 {
+    margin-top: 3em;
 }
 
 #katsises img {
@@ -28,10 +32,29 @@ h1 {
     text-align: center;
 }
 
-#commissions {
+#intro {
+    column-gap: 20px;
+}
+
+#intro img {
+    border-radius: 100px;
+}
+
+#intro p {
+    text-align: left;
+}
+
+#intro-title {
+    column-gap: 30px;
+}
+
+.flex {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+#commissions {
     flex-direction: column;
 }
 
@@ -77,4 +100,8 @@ h1 {
 
 #commissions thead {
     border-bottom: 1px white solid;
+}
+
+#pfp {
+    width: 100px;
 }
