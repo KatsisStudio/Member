@@ -121,6 +121,11 @@ hr {
     border-radius: 20px;
 }
 
+#main img:hover {
+    box-shadow: black 5px 5px;
+    border-radius: 20px;
+}
+
 #main .flex {
     column-gap: 20px;
 }
