@@ -8,6 +8,25 @@
         <div>
             <div class="flex" id="intro-title">
                 <h1>{{ member.name }}</h1>
+                <p>
+                    {% for so in member.socials %}
+                    {% if so.name == "discord" %}
+                    <span title="{{ so.link }}"><i class="fab fa-discord"></i></span>
+                    {% else %}
+                        <a href="{{ so.link }}" target="_blank">
+                        {% if so.name == "twitter" %}
+                        <i class="fa-brands fa-twitter"></i>
+                        {% elseif so.name == "youtube" %}
+                        <i class="fa-brands fa-youtube"></i>
+                        {% elseif so.name == "twitch" %}
+                        <i class="fa-brands fa-twitch"></i>
+                        {% else %}
+                        <i class="fa-solid fa-globe"></i>
+                        {% endif %}
+                        </a>
+                    {% endif %}
+                    {% endfor %}
+                </p>
                 <p>{{ member.role | join(", ") }}</p>
             </div>
             <p>

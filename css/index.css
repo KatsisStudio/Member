@@ -49,7 +49,7 @@ hr {
 }
 
 #intro-title {
-    column-gap: 30px;
+    column-gap: 10px;
     justify-content: start;
 }
 
@@ -123,4 +123,12 @@ hr {
 
 #main .flex {
     column-gap: 20px;
+}
+
+a, i {
+    color: rgb(255, 143, 174);
+}
+
+a > i:hover {
+    color: white;
 }
