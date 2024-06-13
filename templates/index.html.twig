@@ -50,7 +50,7 @@
                 {% endfor %}
                 </div>
             {% endif %}
-            {% if member.commissions is not null %}
+            {% if member.commissions is not null and member.commissions.data is not null %}
             <h2>Commissions</h2>
             <hr>
             <div id="commissions" class="flex">
