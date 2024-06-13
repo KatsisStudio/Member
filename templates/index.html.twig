@@ -100,6 +100,30 @@
                 {% endfor %}
                 </div>
             {% endif %}
+            {% if member.commissions is not null and (member.commissions.tos is not null or member.commissions.faq is not null) %}
+                <h2>ToS & FAQ</h2>
+                <hr>
+                <div class="flex">
+                    {% if member.commissions.tos is not null %}
+                    <div class="container">
+                        <p>
+                            <ul>
+                                {{ member.commissions.tos | map(x => '<li class="question">' ~ x ~ '</li>') | join('<br>') | raw }}
+                            <ul>
+                        </p>
+                    </div>
+                    {% endif %}
+                    {% if member.commissions.faq is not null %}
+                    <div class="container">
+                        <p>
+                            <ul>
+                                {{ member.commissions.faq | map(x => '<li><p class="question">' ~ x.question ~ '</p><p>' ~ x.answer ~ '</p></li>') | join('<br>') | raw }}
+                            <ul>
+                        </p>
+                    </div>
+                    {% endif %}
+                </div>
+            {% endif %}
         </div>
     {% endif %}
 {% endblock %}

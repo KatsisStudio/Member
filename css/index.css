@@ -61,12 +61,12 @@ hr {
 
 .flex {
     display: flex;
-    align-items: center;
     justify-content: center;
 }
 
 #commissions {
     flex-direction: column;
+    align-items: center;
 }
 
 #commissions .container {
@@ -136,4 +136,17 @@ a, i {
 
 a > i:hover {
     color: white;
+}
+
+.container {
+    background-color: #210d14;
+    color: white;
+    max-width: 1000px;
+    border-radius: 40px;
+    padding: 20px;
+}
+
+.question {
+    font-weight: bold;
+    font-size: 1.1em;
 }
