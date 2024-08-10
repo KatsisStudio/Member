@@ -31,11 +31,13 @@ if ($json) {
     $images = json_decode(file_get_contents($data["gallery"]), true);
     $projects = json_decode(file_get_contents($data["project"]), true);
 
+    shuffle($images);
+
     $endImages = [];
     $endComics = [];
     $endProjects = [];
 
-    foreach (array_reverse($images) as $img) {
+    foreach ($images as $img) {
         if (clean($img["author"]) === $name) {
             array_push($endImages, [
                 "id" => $img["id"],
