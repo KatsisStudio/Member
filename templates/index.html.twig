@@ -83,17 +83,6 @@
                 {% endfor %}
             </div>
             {% endif %}
-            {% if comics is not empty %}
-            <div id="comics">
-                <h2>Comics</h2>
-                <hr>
-                <div class="flex">
-                {% for c in comics %}
-                    <a href="https://comic.katsis.net/{{ c.id }}"><img src="https://comic.katsis.net/comics/{{ c.id }}/previews/thumbnail.png"/></a>
-                {% endfor %}
-                </div>
-            </div>
-            {% endif %}
             {% if images is not empty %}
             <div id="gallery">
                 <h2>Gallery</h2>
@@ -105,16 +94,27 @@
                 </div>
             </div>
             {% endif %}
+            {% if comics is not empty %}
+            <div id="comics">
+                <h2>Comics</h2>
+                <hr>
+                <div class="flex">
+                {% for c in comics %}
+                    <a href="https://comic.katsis.net/{{ c.id }}"><img src="https://comic.katsis.net/comics/{{ c.id }}/previews/thumbnail.png"/></a>
+                {% endfor %}
+                </div>
+            </div>
+            {% endif %}
             {% if member.commissions is not null and (member.commissions.tos is not null or member.commissions.faq is not null) %}
             <div id="tos">
-                <h2>ToS & FAQ</h2>
+                <h2>ToS &amp; FAQ</h2>
                 <hr>
                 <div class="flex">
                     {% if member.commissions.tos is not null %}
                     <div class="container">
                         <p>
                             <ul>
-                                {{ member.commissions.tos | map(x => '<li class="question">' ~ x ~ '</li>') | join('<br>') | raw }}
+                                {{ member.commissions.tos.data | map(x => '<li class="question">' ~ x ~ '</li>') | join('<br>') | raw }}
                             <ul>
                         </p>
                     </div>
@@ -123,7 +123,7 @@
                     <div class="container">
                         <p>
                             <ul>
-                                {{ member.commissions.faq | map(x => '<li><p class="question">' ~ x.question ~ '</p><p>' ~ x.answer ~ '</p></li>') | join('<br>') | raw }}
+                                {{ member.commissions.faq.data | map(x => '<li><p class="question">' ~ x.question ~ '</p><p>' ~ x.answer ~ '</p></li>') | join('<br>') | raw }}
                             <ul>
                         </p>
                     </div>

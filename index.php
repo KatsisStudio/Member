@@ -14,7 +14,7 @@ function clean($name) {
 
 if (str_starts_with($_SERVER['HTTP_HOST'], "localhost"))
 {
-    $name = "fractal";
+    $name = "pauline";
 }
 else
 {
@@ -80,9 +80,30 @@ if ($json) {
         }
     }
 
+    function getSeeAlso($members, $target, $key) {
+        foreach ($members as $m) {
+            if (clean($m["name"]) == $target)
+            {
+                if (array_key_exists("seealso", $m["commissions"][$key]))
+                {
+                    return getSeeAlso($members, $baseM, $m["commissions"][$key]["seealso"]);
+                }
+                return $m["commissions"][$key];
+            }
+        }
+    }
     foreach ($members as $m) {
         if (clean($m["name"]) == $name)
         {
+            if ($m["commissions"] !== null && array_key_exists("seealso", $m["commissions"]["faq"]))
+            {
+                $m["commissions"]["faq"] = getSeeAlso($members, $m["commissions"]["faq"]["seealso"], "faq");
+            }
+            if ($m["commissions"] !== null && array_key_exists("seealso", $m["commissions"]["tos"]))
+            {
+                $m["commissions"]["tos"] = getSeeAlso($members, $m["commissions"]["tos"]["seealso"], "tos");
+            }
+
             echo $twig->render("index.html.twig", [
                 "member" => $m,
                 "images" => $endImages,
