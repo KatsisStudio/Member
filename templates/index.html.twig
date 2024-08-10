@@ -55,28 +55,29 @@
             <hr>
             <div id="commissions" class="flex">
                 {% for cdata in member.commissions.data %}
-                    <h3>{{ cdata.name }}</h3>
-                    <div class="container" style="background-image: url('https://gallery.katsis.net/data/images/{{ cdata.background }}.png');">
-                        <div class="filter"></div>
-                        <div class="content">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Art Range</th>
-                                        <th>Detail</th>
-                                        <th>Price</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                            {% for cddata in cdata.details %}
-                                    <tr>
-                                        <td>{{ cddata.range }}</td>
-                                        <td>{{ cddata.details }}</td>
-                                        <td>{% if cddata.price == -1 %}TBA{% else %}{{ cddata.price }}{{ member.commissions.devise }}{% endif %}</td>
-                                    </tr>
-                            {% endfor %}
-                                </tbody>
-                            </table>
+                    <div>
+                        <h3>{{ cdata.name }}</h3>
+                        <div class="container" style="background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('https://gallery.katsis.net/data/images/{{ cdata.background }}.png');">
+                            <div class="content">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Art Range</th>
+                                            <th>Detail</th>
+                                            <th>Price</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                {% for cddata in cdata.details %}
+                                        <tr>
+                                            <td>{{ cddata.range }}</td>
+                                            <td>{{ cddata.details }}</td>
+                                            <td>{% if cddata.price == -1 %}TBA{% else %}{{ cddata.price }}{{ member.commissions.devise }}{% endif %}</td>
+                                        </tr>
+                                {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 {% endfor %}
