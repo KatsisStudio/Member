@@ -41,19 +41,11 @@
         </div>
     {% else %}
         <div id="main">
-            {% if projects is not empty %}
-                <h2>Projects</h2>
+            {% if member.commissions is not null and member.commissions.data is not null %}
+            <div id="commissions">
+                <h2>Commissions</h2>
                 <hr>
                 <div class="flex">
-                {% for p in projects %}
-                    <a href="{{ p.link }}"><img src="https://katsis.net/img/projects/{{ p.baseFolder }}/{{ p.preview }}"/></a>
-                {% endfor %}
-                </div>
-            {% endif %}
-            {% if member.commissions is not null and member.commissions.data is not null %}
-            <h2>Commissions</h2>
-            <hr>
-            <div id="commissions" class="flex">
                 {% for cdata in member.commissions.data %}
                     <div>
                         <h3>{{ cdata.name }}</h3>
@@ -81,6 +73,18 @@
                         </div>
                     </div>
                 {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+            {% if projects is not empty %}
+            <div id="projects">
+                <h2>Projects</h2>
+                <hr>
+                <div class="flex">
+                {% for p in projects %}
+                    <a href="{{ p.link }}"><img src="https://katsis.net/img/projects/{{ p.baseFolder }}/{{ p.preview }}"/></a>
+                {% endfor %}
+                </div>
             </div>
             {% endif %}
             {% if images is not empty %}
@@ -120,7 +124,7 @@
                     </div>
                     {% endif %}
                     {% if member.commissions.faq is not null %}
-                    <div class="container">
+                    <div class="container" id="faq">
                         <p>
                             <ul>
                                 {{ member.commissions.faq.data | map(x => '<li><p class="question">' ~ x.question ~ '</p><p>' ~ x.answer ~ '</p></li>') | join('<br>') | raw }}

@@ -3,7 +3,8 @@ html {
     background-color: #1e1e1e;
     color: #ccc;
     line-height: 1.5em;
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(92,0,58,1) 50%, rgba(27,0,82,1) 100%);
+    background: linear-gradient(0deg, rgba(153,67,88,1) 0%, rgba(21,6,19,1) 100%);
+    min-height: 100vh;
 }
 
 body {
@@ -11,21 +12,7 @@ body {
     padding: 20px;
 }
 
-img {
-    max-height: 300px;
-}
-
-h1, h2 {
-    text-align: center;
-}
-
-h2 {
-    margin-top: 3em;
-}
-
-hr {
-    margin-bottom: 25px;
-}
+/* No data */
 
 #katsises img {
     width: 200px;
@@ -35,6 +22,8 @@ hr {
     margin-top: 100px;
     text-align: center;
 }
+
+/* Intro */
 
 #intro {
     column-gap: 20px;
@@ -59,72 +48,16 @@ hr {
     font-size: 15px;
 }
 
-.flex {
-    display: flex;
-    justify-content: center;
-    flex-flow: wrap;
-}
-
-#commissions {
-    flex-direction: row;
-    align-items: center;
-    text-align: center;
-}
-
-#commissions .container {
-    width: 1000px;
-    max-width: 90%;
-    height: 500px;
-    background-size: cover !important;
-    background-position: 50% 20% !important;
-    border-radius: 10px;
-}
-
-#commissions .content {
-    height: 300px;
-    position: relative;
-    z-index: 1;
-}
-
-#commissions thead {
-    font-size: 1.2em;
-}
-
-#commissions tbody {
-    font-size: 1.1em;
-}
-
-#commissions table {
-    height: 100%;
-    width: 100%;
-    padding: 10px;
-    border-collapse: collapse;
-}
-
-#commissions td {
-    padding: 0 20px;
-}
-
-#commissions thead {
-    border-bottom: 1px white solid;
-}
-
 #pfp {
     width: 100px;
 }
 
-#main img {
-    border-radius: 20px;
-}
+/* General */
 
-#main img:hover {
-    box-shadow: black 5px 5px;
-    border-radius: 20px;
-}
-
-#main .flex {
-    column-gap: 20px;
-    row-gap: 10px;
+.flex {
+    display: flex;
+    justify-content: center;
+    flex-flow: wrap;
 }
 
 a, i {
@@ -135,7 +68,47 @@ a > i:hover {
     color: white;
 }
 
-.container {
+/* Comissions */
+tr {
+    height: 100px;
+}
+
+#commissions .container {
+    width: 1000px;
+    background-size: cover !important;
+    background-position: 50% 20% !important;
+    border-radius: 10px;
+}
+
+#commissions table {
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+}
+
+@media only screen and (max-width: 1000px) {
+    #commissions .container {
+        width: 100%;
+    }
+}
+
+/* Others categories */
+
+#main img {
+    max-height: 300px;
+    border-radius: 20px;
+}
+
+#main img:hover {
+    filter: brightness(80%);
+}
+
+#main .flex {
+    column-gap: 20px;
+    row-gap: 10px;
+}
+
+#tos .container {
     background-color: #210d14;
     color: white;
     max-width: 1000px;
@@ -146,4 +119,9 @@ a > i:hover {
 .question {
     font-weight: bold;
     font-size: 1.1em;
+}
+
+#tos .bold, #faq .question {
+    font-weight: bold;
+    color: #FFA3CA;
 }

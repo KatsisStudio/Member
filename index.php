@@ -12,6 +12,10 @@ function clean($name) {
     return strtolower(str_replace(' ', '', $name));
 }
 
+function addBoldTag($line) {
+    return preg_replace("/\*([^\*]+)\*/", "<span class='bold'>$1</span>", $line);
+}
+
 if (str_starts_with($_SERVER['HTTP_HOST'], "localhost"))
 {
     $name = "pauline";
@@ -101,9 +105,13 @@ if ($json) {
             {
                 $m["commissions"]["faq"] = getSeeAlso($members, $m["commissions"]["faq"]["seealso"], "faq");
             }
-            if ($m["commissions"] !== null && array_key_exists("seealso", $m["commissions"]["tos"]))
+            if ($m["commissions"] != null && $m["commissions"]["tos"] != null)
             {
-                $m["commissions"]["tos"] = getSeeAlso($members, $m["commissions"]["tos"]["seealso"], "tos");
+                if (array_key_exists("seealso", $m["commissions"]["tos"]))
+                {
+                    $m["commissions"]["tos"] = getSeeAlso($members, $m["commissions"]["tos"]["seealso"], "tos");
+                }
+                $m["commissions"]["tos"] = array_map("addBoldTag", $m["commissions"]["tos"]);
             }
 
             echo $twig->render("index.html.twig", [
