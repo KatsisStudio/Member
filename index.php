@@ -18,7 +18,7 @@ function addBoldTag($line) {
 
 if (str_starts_with($_SERVER['HTTP_HOST'], "localhost"))
 {
-    $name = "pauline";
+    $name = "dekakumadon";
 }
 else
 {
@@ -101,7 +101,7 @@ if ($json) {
     foreach ($members as $m) {
         if (clean($m["name"]) == $name)
         {
-            if ($m["commissions"] !== null && array_key_exists("seealso", $m["commissions"]["faq"]))
+            if ($m["commissions"] !== null && $m["commissions"]["faq"] != null && array_key_exists("seealso", $m["commissions"]["faq"]))
             {
                 $m["commissions"]["faq"] = getSeeAlso($members, $m["commissions"]["faq"]["seealso"], "faq");
             }
