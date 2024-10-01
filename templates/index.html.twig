@@ -49,7 +49,7 @@
                 {% for cdata in member.commissions.data %}
                     <div>
                         <h3>{{ cdata.name }}</h3>
-                        <div class="container" style="background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('https://gallery.katsis.net/data/images/{{ cdata.background }}.png');">
+                        <div class="container" style="background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('https://gallery.katsis.net/data/images/{{ cdata.background }}.{{ cdata.format }}');">
                             <div class="content">
                                 <table>
                                     <thead>

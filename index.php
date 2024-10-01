@@ -18,7 +18,7 @@ function addBoldTag($line) {
 
 if (str_starts_with($_SERVER['HTTP_HOST'], "localhost"))
 {
-    $name = "dekakumadon";
+    $name = "fractal";
 }
 else
 {
@@ -112,6 +112,18 @@ if ($json) {
                     $m["commissions"]["tos"] = getSeeAlso($members, $m["commissions"]["tos"]["seealso"], "tos");
                 }
                 $m["commissions"]["tos"] = array_map("addBoldTag", $m["commissions"]["tos"]);
+            }
+
+            $i = 0;
+            foreach ($m["commissions"]["data"] as $cImg) {
+                if ($cImg["background"] !== null) {
+                    foreach ($images as $img) {
+                        if (clean($img["id"]) === $cImg["background"]) {
+                            $m["commissions"]["data"][$i]["format"] = $img["format"];
+                        }
+                    }
+                }
+                $i += 1;
             }
 
             echo $twig->render("index.html.twig", [
