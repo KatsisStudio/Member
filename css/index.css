@@ -60,6 +60,10 @@ body {
     flex-flow: wrap;
 }
 
+a {
+    text-decoration: none;
+}
+
 a, i {
     color: rgb(255, 143, 174);
 }
