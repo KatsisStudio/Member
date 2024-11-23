@@ -129,7 +129,7 @@
                     <div class="container" id="faq">
                         <p>
                             <ul>
-                                {{ member.commissions.faq.data | map(x => '<li><p class="question">' ~ x.question ~ '</p><p>' ~ x.answer ~ '</p></li>') | join('<br>') | raw }}
+                                {{ member.commissions.faq.data | map(x => '<li><p class="question">' ~ x.question ~ '</p><p>' ~ x.answer | replace({'\n': '<br>'}) | raw ~ '</p></li>') | join('<br>') | raw }}
                             <ul>
                         </p>
                     </div>
