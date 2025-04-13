@@ -3,7 +3,7 @@
 {% block content %}
     <div class="flex" id="intro">
         <div>
-            <img id="pfp" src="https://katsis.net/data/members/{{ member.image }}"/>
+            <img id="pfp" src="https://katsis.net/data/members/{{ member.image }}" data-sfw="https://katsis.net/data/members/{{ member.image }}" data-nsfw={% if member.imageLewd %}"https://katsis.net/data/members/{{ member.imageLewd }}"{% else %}"https://katsis.net/data/members/{{ member.image }}"{% endif %} />
         </div>
         <div>
             <div class="flex" id="intro-title">
@@ -36,6 +36,56 @@
             </p>
         </div>
     </div>
+    {% if member.info %}
+        <div id="info">
+            <h2 class="title is-3">Info</h2>
+            <hr>
+            <div class="grid">
+                {% if member.info.software %}
+                    <div class="has-text-centered cell">
+                        <h2 class="subtitle is-5">Softwares used</h2>
+                        <p>{{ member.info.software | join('<br>') | raw }}</p>
+                    </div>
+                {% endif %}
+                {% if member.info.kink %}
+                    <div class="has-text-centered cell">
+                        <h2 class="subtitle is-5">Favorite Kinks</h2>
+                        <p>{{ member.info.kink | join('<br>') | raw }}</p>
+                    </div>
+                {% endif %}
+                {% if member.info.game %}
+                    <div class="has-text-centered cell">
+                        <h2 class="subtitle is-5">Favorite Games</h2>
+                        <p>{{ member.info.game | join('<br>') | raw }}</p>
+                    </div>
+                {% endif %}
+                {% if member.info.food %}
+                    <div class="has-text-centered cell">
+                        <h2 class="subtitle is-5">Favorite Foods</h2>
+                        <p>{{ member.info.food | join('<br>') | raw }}</p>
+                    </div>
+                {% endif %}
+                {% if member.info.color %}
+                    <div class="has-text-centered cell">
+                        <h2 class="subtitle is-5">Favorite Colors</h2>
+                        <p>{{ member.info.color | join('<br>') | raw }}</p>
+                    </div>
+                {% endif %}
+                {% if member.info.song %}
+                    <div class="has-text-centered cell">
+                        <h2 class="subtitle is-5">Favorite Music</h2>
+                        <p>{{ member.info.song |map(p => p.link is null ? p.name : "<a target='_blank' href='https://www.youtube.com/watch?v=#{p.link}'>#{p.name}</a>") | join('<br>') | raw }}</p>
+                    </div>
+                {% endif %}
+                {% if member.info.water %}
+                    <div class="has-text-centered cell">
+                        <h2 class="subtitle is-5">Favorite Waters</h2>
+                        <p>{{ member.info.water | join('<br>') | raw }}</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    {% endif %}
     {% if projects is empty and comics is empty and images is empty and commissions is null %}
         <div id="katsises">
             <img src="img/logo.png"/> <img src="img/logo.png"/> <img src="img/logo.png"/><br>
@@ -45,12 +95,12 @@
         <div id="main">
             {% if member.commissions is not null and member.commissions.data is not null %}
             <div id="commissions">
-                <h2>Commissions</h2>
+                <h2 class="title is-3">Commissions</h2>
                 <hr>
                 <div class="flex">
                 {% for cdata in member.commissions.data %}
                     <div>
-                        <h3>{{ cdata.name }}</h3>
+                        <h3 class="subtitle is-5">{{ cdata.name }}</h3>
                         <div class="container" style="background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('https://gallery.katsis.net/data/images/{{ cdata.background }}.{{ cdata.format }}');">
                             <div class="content">
                                 <table>
@@ -80,7 +130,7 @@
             {% endif %}
             {% if projects is not empty %}
             <div id="projects">
-                <h2>Projects</h2>
+                <h2 class="title is-3">Projects</h2>
                 <hr>
                 <div class="flex">
                 {% for p in projects %}
@@ -91,7 +141,7 @@
             {% endif %}
             {% if images is not empty %}
             <div id="gallery">
-                <h2>Gallery</h2>
+                <h2 class="title is-3">Gallery</h2>
                 <hr>
                 <div class="flex">
                 {% for img in images %}
@@ -102,7 +152,7 @@
             {% endif %}
             {% if comics is not empty %}
             <div id="comics">
-                <h2>Comics</h2>
+                <h2 class="title is-3">Comics</h2>
                 <hr>
                 <div class="flex">
                 {% for c in comics %}
@@ -113,7 +163,7 @@
             {% endif %}
             {% if member.commissions is not null and (member.commissions.tos is not null or member.commissions.faq is not null) %}
             <div id="tos">
-                <h2>ToS &amp; FAQ</h2>
+                <h2 class="title is-3">ToS &amp; FAQ</h2>
                 <hr>
                 <div class="flex">
                     {% if member.commissions.tos is not null %}
